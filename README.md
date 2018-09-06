@@ -14,9 +14,9 @@ Let's assume that the provided dataset is already in *data* folder:
 - data/train_val2018.zip
 - data/train_val2018.json
 
-After extracting *train_val2018.zip*, we will have *TrainVal* folder containing all images inside *data* folder.
+After extracting *train_val2018.zip*, we will have *TrainVal* folder containing all images inside *data*.
 
-We run the code to prepare the data fo training:
+We run the code to prepare data for training:
 - train/validation with the ratio of 92%/8%.
 - splitting it into 10 folds in the cross-validation manner.
 
@@ -24,7 +24,7 @@ We run the code to prepare the data fo training:
 $ python3 src/data_prepare.py
 ```
 
-After finished, all needed files are in *data* folder and ready for training. The *class_dis.txt* file contains distribution of data over all classes, which is also created inside *data* folder and later used for weighted cross entropy loss.
+After finished, all needed files are in *data* folder and ready for training. The *class_dis.txt* file contains distribution over all classes, which is also created inside *data* and later used for weighted loss in training.
 
 ### Data Augmentation
 
