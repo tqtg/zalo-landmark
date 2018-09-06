@@ -1,0 +1,8 @@
+src/.idea/
+src/__pycache__/
+src/nets/__pycache__/
+
+data/
+models/
+submissions/
+submission.csv
