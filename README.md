@@ -33,7 +33,7 @@ After finished, all needed files are in *data* folder and ready for training. Th
 - Color distortion
 - Aspect distortion
 - Random cropping
-- Horizontal flipping
+- Random horizontal flipping
 
 ## Training
 
