@@ -5,7 +5,7 @@ data_dir=$1
 rm -rf submissions
 mkdir submissions
 
-export CUDA_VISIBLE_DEVICES=3
+export CUDA_VISIBLE_DEVICES=0
 
 echo '0_inception_resnet_v2'
 python3 src/predict.py --data_dir $data_dir --net 'inception_resnet_v2' --checkpoint_dir 'models/0_inception_resnet_v2' --batch_size 10 --image_size 299
