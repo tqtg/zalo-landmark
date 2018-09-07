@@ -41,6 +41,7 @@ After finished, all needed files are in *data* folder and ready for training. Th
 
 - Inception-ResNet
 - ResNet-152
+Other architectures are also available: ResNet-50, ResNet-101, ResNet-200, Inception-V4, DenseNet-161, NASNet, PNASNet with pre-trained models can be downloaded from [Slim](https://github.com/tensorflow/models/tree/master/research/slim) package. 
 
 ### Model Training
 
