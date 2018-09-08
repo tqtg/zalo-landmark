@@ -46,6 +46,7 @@ files = [value for (key, value) in OrderedDict(sorted(file_order.items())).items
 
 sum_probs = {}
 for file in files:
+  print(file)
   probs = np.load(file).flatten()[0]
   for fn, prob in probs.items():
     if fn not in sum_probs:
