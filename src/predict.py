@@ -6,7 +6,7 @@ import numpy as np
 import imghdr
 from tqdm import tqdm
 from multiprocessing import cpu_count
-
+import glob
 
 # Parameters
 # ==================================================
@@ -80,7 +80,8 @@ def init_model(features):
 
   predictions = {
     'classes': tf.argmax(logits, axis=1),
-    'top_3': tf.nn.top_k(logits, k=3)[1]
+    'top_3': tf.nn.top_k(logits, k=3)[1],
+    'probs': tf.nn.softmax(logits)
   }
 
   return predictions
@@ -95,8 +96,10 @@ def main(_):
   x = tf.placeholder(tf.float32, shape=[None, FLAGS.image_size, FLAGS.image_size, 3])
   predictions = init_model(features=x)
 
-  submit_file = open('submissions/{}_submission_{}.csv'.format(len(os.listdir('submissions/')), FLAGS.net), 'w')
+  submit_file = open('submissions/{}_submission_{}.csv'.format(len(glob.glob("submissions/*.csv")), FLAGS.net), 'w')
   submit_file.write('id,predicted\n')
+
+  probs = {}
 
   # Create a session
   session_conf = tf.ConfigProto(allow_soft_placement=FLAGS.allow_soft_placement)
@@ -111,15 +114,18 @@ def main(_):
     for _ in loop:
       # Get next batch of data
       img_batch, fn_batch = sess.run(get_next)
-      _top3_preds = sess.run(predictions['top_3'], feed_dict={x: img_batch})
+      _top3_preds, _probs = sess.run([predictions['top_3'], predictions['probs']], feed_dict={x: img_batch})
 
-      for fn, preds in zip(fn_batch, _top3_preds):
-        submit_file.write('{},{}\n'.format(fn.decode("utf-8"),
-                                           ' '.join([str(p) for p in preds.tolist()])))
+      for fn, preds, prob in zip(fn_batch, _top3_preds, _probs):
+        fn = fn.decode("utf-8")
+        submit_file.write('{},{}\n'.format(fn, ' '.join([str(p) for p in preds.tolist()])))
+        probs[fn] = prob
 
     for fn in corrupted_fns:
       submit_file.write('{},93 83 2\n'.format(fn))
+      probs[fn] = np.zeros([103])
 
+    np.save('submissions/{}_probs_{}.npy'.format(len(glob.glob("submissions/*.npy")), FLAGS.net), probs)
     submit_file.close()
     print('Done')
 
