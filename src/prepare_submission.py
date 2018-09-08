@@ -4,6 +4,8 @@ import glob
 
 ################################################################################
 
+print('\n{} {} {}\n'.format('#' * 20, 'VOTING', '#' * 20))
+
 files = glob.glob("submissions/*.csv")
 file_order = {}
 for file in files:
@@ -34,6 +36,9 @@ with open('submission.csv', 'w') as f:
 
 
 #################################################################################
+
+print('\n{} {} {}\n'.format('#' * 20, 'PROBS AVERAGING', '#' * 20))
+
 import numpy as np
 
 files = glob.glob("submissions/*.npy")
@@ -60,5 +65,5 @@ with open('submission_prob.csv', 'w') as f:
     candidates = prob.argsort()[-3:][::-1]
     f.write('{},{}\n'.format(img_id, ' '.join([str(c) for c in candidates.tolist()])))
 
-print('Ready to submit!')
+print('\nReady to submit!')
 print('Final predictions are in submission.csv or submission_prob.csv')

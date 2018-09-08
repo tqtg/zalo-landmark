@@ -46,14 +46,14 @@ Other architectures are also available: ResNet-50, ResNet-101, ResNet-200, Incep
 
 ### Model Training
 
-First, we need to download pre-trained models of Inception-ResNet and ResNet-152. Pre-trained weights are from [Slim](https://github.com/tensorflow/models/tree/master/research/slim) package of *Tensorflow* framework.
+First, we need to download pre-trained models of Inception-ResNet and ResNet-152 from [Slim](https://github.com/tensorflow/models/tree/master/research/slim).
 
 ```bash
 $ chmod 700 download.sh
 $ ./download.sh
 ```
 
-All pre-trained weights will be downloaded and stored in *pretrained* folder.
+All pre-trained weights will be stored in *pretrained* folder.
 
 To trained a new model with Inception-ResNet architecture:
 ```bash
