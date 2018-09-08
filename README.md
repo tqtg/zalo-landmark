@@ -1,5 +1,7 @@
 # Zalo AI Challenge - Landmark Identification
 
+**This code is ranked top-1 Final Leaderboard of the challenge.**
+
 ## Required Packages
 
 ```bash
@@ -42,18 +44,18 @@ After finished, all needed files are in *data* folder and ready for training. Th
 - Inception-ResNet
 - ResNet-152
 
-Other architectures are also available: ResNet-50, ResNet-101, ResNet-200, Inception-V4, DenseNet-161, NASNet, PNASNet with pre-trained models can be downloaded from [Slim](https://github.com/tensorflow/models/tree/master/research/slim) package. 
+Other architectures are also available: ResNet-50, ResNet-101, ResNet-200, Inception-V4, DenseNet-161, NASNet, PNASNet with pre-trained weights can be downloaded from [Slim](https://github.com/tensorflow/models/tree/master/research/slim) package. 
 
 ### Model Training
 
-First, we need to download pre-trained models of Inception-ResNet and ResNet-152 from [Slim](https://github.com/tensorflow/models/tree/master/research/slim).
+First, we need to download pre-trained weights of Inception-ResNet and ResNet-152 from [Slim](https://github.com/tensorflow/models/tree/master/research/slim).
 
 ```bash
 $ chmod 700 download.sh
 $ ./download.sh
 ```
 
-All pre-trained weights will be stored in *pretrained* folder.
+All downloaded weights will be stored in *pretrained* folder.
 
 To trained a new model with Inception-ResNet architecture:
 ```bash
